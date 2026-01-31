@@ -18,7 +18,8 @@
             logElement.innerHTML = 'Testando...';
             
             try {
-                const response = await axios.post('/api/check', { username });
+                // Usando proxy para evitar CORS
+                const response = await axios.post('/api/proxy', { username });
                 logElement.innerHTML = JSON.stringify(response.data, null, 2);
             } catch (error) {
                 logElement.innerHTML = `Erro: ${error.message}`;
