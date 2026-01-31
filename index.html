@@ -18,8 +18,8 @@
             logElement.innerHTML = 'Testando...';
             
             try {
-                // Usando proxy para evitar CORS
-                const response = await axios.post('/api/proxy', { username });
+                // Usando Cloudflare Worker proxy
+                const response = await axios.post('https://your-worker.your-subdomain.workers.dev/api/proxy', { username });
                 logElement.innerHTML = JSON.stringify(response.data, null, 2);
             } catch (error) {
                 logElement.innerHTML = `Erro: ${error.message}`;
