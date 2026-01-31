@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roblox Password Checker</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" id="username" placeholder="Nome de usuário">
+        <button onclick="checkPassword()">Testar Senha</button>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        async function checkPassword() {
+            const username = document.getElementById('username').value;
+            const logElement = document.getElementById('log');
+            logElement.innerHTML = 'Testando...';
+            
+            try {
+                const response = await axios.post('/api/check', { username });
+                logElement.innerHTML = JSON.stringify(response.data, null, 2);
+            } catch (error) {
+                logElement.innerHTML = `Erro: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
